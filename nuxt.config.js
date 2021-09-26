@@ -70,6 +70,15 @@ export default {
     },
   },
 
+  publicRuntimeConfig: {
+    GRAPHQL_ENDPOINT: process.env.GRAPHQL_ENDPOINT,
+    AWS_AMPLIFY_AUTH_REGION: process.env.AWS_AMPLIFY_AUTH_REGION,
+    AWS_AMPLIFY_AUTH_USER_POOL_ID: process.env.AWS_AMPLIFY_AUTH_USER_POOL_ID,
+    AWS_AMPLIFY_AUTH_USER_POOL_WEB_CLIENT_ID:
+      process.env.AWS_AMPLIFY_AUTH_USER_POOL_WEB_CLIENT_ID,
+    AWS_AMPLIFY_AUTH_ID_POOL_ID: process.env.AWS_AMPLIFY_AUTH_ID_POOL_ID,
+  },
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
 };

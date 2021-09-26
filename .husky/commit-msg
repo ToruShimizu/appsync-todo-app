@@ -1,0 +1,21 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+ESC=$(printf '\033')
+RESET="${ESC}[0m"
+YELLOW="${ESC}[33m"  
+# commitlintでメッセージをリンターにかける
+yarn commitlint --edit $1
+echo $2
+
+# ブランチ名からIssue番号を取得してコミットメッセージに貼る
+# ブランチ名取得
+local_branch="$(git rev-parse --abbrev-ref HEAD)"
+echo "local_branch: $local_branch"
+# 正規表現でIssue番号取得
+issue_number="$(echo $local_branch | egrep --only-matching '^[0-9]+')" || issue_number="" | echo "${YELLOW}WARN: ブランチ名には必ずIssue番号を先頭に含めてください。\n e.g.) 23-feat-description${RESET}"
+echo "issue_number: $issue_number"
+# issue番号がブランチ名に含まれていればコミットメッセージに追加
+if [ -n "$issue_number" ]; then
+  echo "$(cat $1 | sed "s/^\([a-zA-Z]\{1,\}:\) /\1 #$issue_number /")" > $1 
+fi

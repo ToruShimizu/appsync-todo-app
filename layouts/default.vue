@@ -5,6 +5,8 @@
         <v-toolbar-title class="text-h5 white--text">
           todo-app
         </v-toolbar-title>
+        <v-spacer />
+        <AccountMenuList />
       </v-app-bar>
       <v-main>
         <v-container>

@@ -41,7 +41,7 @@ import {
   reactive,
   ref,
   toRefs,
-  useContext,
+  useStore,
 } from '@nuxtjs/composition-api';
 
 const createDefaultSignInInput = () => ({
@@ -53,21 +53,18 @@ export default defineComponent({
   name: 'PagesSignIn',
   layout: 'no-header',
   setup() {
-    const {
-      app: { store },
-    } = useContext();
+    const store = useStore();
 
     const isValid = ref(false);
 
     const signInInput = reactive(createDefaultSignInInput());
 
     const signIn = () => {
-      // TODO: ログイン機能ができたら繋ぎこむ
-      // try {
-      //   if (store) store.dispatch('user/signIn', signInInput);
-      // } catch (e) {
-      //   console.error(e);
-      // }
+      try {
+        store.dispatch('user/signIn', signInInput);
+      } catch (e) {
+        console.error(e);
+      }
     };
     return {
       /** data */

@@ -11,7 +11,12 @@
     <v-form v-model="isValid">
       <div align="center">
         <div>
-          <TextInput v-model="username" label="username" required />
+          <TextInput
+            v-model="username"
+            :rules="signInValidationRules.username"
+            label="username"
+            required
+          />
         </div>
       </div>
       <div align="center">
@@ -21,6 +26,7 @@
             type="password"
             label="password"
             required
+            :rules="signInValidationRules.password"
           />
         </div>
       </div>
@@ -43,6 +49,7 @@ import {
   toRefs,
   useStore,
 } from '@nuxtjs/composition-api';
+import { useSignInRules } from '~/useCases/sign-in/validation';
 
 const createDefaultSignInInput = () => ({
   username: '',
@@ -54,6 +61,7 @@ export default defineComponent({
   layout: 'no-header',
   setup() {
     const store = useStore();
+    const { signInValidationRules } = useSignInRules();
 
     const isValid = ref(false);
 
@@ -72,6 +80,7 @@ export default defineComponent({
       ...toRefs(signInInput),
       /** methods */
       signIn,
+      signInValidationRules,
     };
   },
 });

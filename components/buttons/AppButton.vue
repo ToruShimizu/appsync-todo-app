@@ -33,7 +33,7 @@ export default defineComponent({
     },
     color: {
       type: String,
-      default: 'primary',
+      default: 'light-blue darken-4',
     },
     disabled: {
       type: Boolean,

@@ -6,7 +6,7 @@
     <div class="d-flex">
       <TextInput v-model="searchedWord" label="検索" />
     </div>
-    <v-data-table :headers="HEADERS" :items="DUMMY_TASKS"> </v-data-table>
+    <DataTable :items="DUMMY_TASKS" :headers="HEADERS" />
   </div>
 </template>
 <script lang="ts">

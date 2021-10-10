@@ -8,7 +8,7 @@
         <TextInput v-model="searchedWord" label="検索" />
       </v-col>
     </div>
-    <DataTable :items="DUMMY_TASKS" :headers="HEADERS">
+    <DataTable :items="tasks" :headers="HEADERS">
       <template v-slot:[`item.edit`]="{ item }">
         <div class="text-right mr-3">
           <v-btn icon @click="editItem(item)">
@@ -23,8 +23,9 @@
   </div>
 </template>
 <script lang="ts">
+import { useFetch } from '@nuxtjs/composition-api';
 import { defineComponent, reactive, ref } from '@vue/composition-api';
-import { Todo } from '~/src/API';
+import { Task } from '~/src/API';
 
 const HEADERS = [
   { text: 'id', value: 'id' },
@@ -35,36 +36,41 @@ const HEADERS = [
 
 const DUMMY_TASKS = [
   {
-    typename: 'Todo',
-    id: 1,
+    id: '1',
     name: 'タスク1',
     description: '詳細1',
   },
   {
-    typename: 'Todo',
-    id: 2,
+    id: '2',
     name: 'タスク2',
     description: '詳細2',
   },
-];
+] as Task[];
 
 const createDefaultTask = () => ({
-  id: 0,
+  userId: '',
+  id: '',
   name: '',
   description: '',
 });
 
 export default defineComponent({
   setup() {
-    const tasks = ref<Todo[]>([]);
-    const selectedTask = reactive<Todo>(createDefaultTask());
+    const tasks = ref<Task[]>([]);
+    const selectedTask = reactive<Task>(createDefaultTask());
     const searchedWord = ref('');
 
-    const editItem = (task: Todo) => Object.assign(selectedTask, task);
+    const editItem = (task: Task) => Object.assign(selectedTask, task);
+
+    /**
+     * init
+     */
+    useFetch(async () => {
+      tasks.value = await Promise.resolve(DUMMY_TASKS);
+    });
 
     return {
       /** data */
-      DUMMY_TASKS,
       HEADERS,
       searchedWord,
       tasks,

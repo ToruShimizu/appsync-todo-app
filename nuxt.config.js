@@ -63,7 +63,7 @@ export default {
       dark: false,
       themes: {
         light: {
-          primary: colors.lightBlue,
+          primary: colors.lightBlue.darken4,
           info: colors.lightBlue,
           red: colors.red,
           green: '#6FCF97',

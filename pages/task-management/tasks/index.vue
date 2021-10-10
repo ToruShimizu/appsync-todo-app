@@ -58,6 +58,7 @@ const filterTasks = (tasks: Task[], keyword: string) =>
   tasks.filter(task => task.name.toLowerCase().includes(keyword.toLocaleLowerCase()))
 
 export default defineComponent({
+  name: 'PagesTaskManagementTasks',
   setup() {
     const tasks = ref<Task[]>([])
     const selectedTask = reactive<Task>(createDefaultTask())

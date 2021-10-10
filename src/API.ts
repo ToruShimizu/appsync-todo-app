@@ -11,8 +11,8 @@ export type CreateTaskInput = {
 export type Task = {
   __typename?: 'Task';
   userId: string;
-  id?: string;
-  name?: string;
+  id: string;
+  name: string;
   description?: string | null;
   createdAt?: string;
   updatedAt?: string;

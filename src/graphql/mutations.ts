@@ -2,15 +2,10 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createTodo = /* GraphQL */ `
-  mutation CreateTodo($input: CreateTodoInput!) {
-    createTodo(input: $input) {
-      user {
-        id
-        username
-        name
-        furigana
-      }
+export const createTask = /* GraphQL */ `
+  mutation CreateTask($input: CreateTaskInput!) {
+    createTask(input: $input) {
+      userId
       id
       name
       description
@@ -19,15 +14,10 @@ export const createTodo = /* GraphQL */ `
     }
   }
 `;
-export const updateTodo = /* GraphQL */ `
-  mutation UpdateTodo($input: UpdateTodoInput!) {
-    updateTodo(input: $input) {
-      user {
-        id
-        username
-        name
-        furigana
-      }
+export const updateTask = /* GraphQL */ `
+  mutation UpdateTask($input: UpdateTaskInput!) {
+    updateTask(input: $input) {
+      userId
       id
       name
       description
@@ -36,15 +26,10 @@ export const updateTodo = /* GraphQL */ `
     }
   }
 `;
-export const deleteTodo = /* GraphQL */ `
-  mutation DeleteTodo($input: DeleteTodoInput!) {
-    deleteTodo(input: $input) {
-      user {
-        id
-        username
-        name
-        furigana
-      }
+export const deleteTask = /* GraphQL */ `
+  mutation DeleteTask($input: DeleteTaskInput!) {
+    deleteTask(input: $input) {
+      userId
       id
       name
       description
@@ -58,8 +43,14 @@ export const createUser = /* GraphQL */ `
     createUser(input: $input) {
       id
       username
-      name
-      furigana
+      tasks {
+        userId
+        id
+        name
+        description
+        createdAt
+        updatedAt
+      }
     }
   }
 `;
@@ -68,8 +59,14 @@ export const updateUser = /* GraphQL */ `
     updateUser(input: $input) {
       id
       username
-      name
-      furigana
+      tasks {
+        userId
+        id
+        name
+        description
+        createdAt
+        updatedAt
+      }
     }
   }
 `;
@@ -78,8 +75,14 @@ export const deleteUser = /* GraphQL */ `
     deleteUser(input: $input) {
       id
       username
-      name
-      furigana
+      tasks {
+        userId
+        id
+        name
+        description
+        createdAt
+        updatedAt
+      }
     }
   }
 `;

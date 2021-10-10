@@ -2,15 +2,22 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getTodo = /* GraphQL */ `
-  query GetTodo($id: ID!) {
-    getTodo(id: $id) {
-      user {
-        id
-        username
-        name
-        furigana
-      }
+export const getTasks = /* GraphQL */ `
+  query GetTasks($userId: ID!) {
+    getTasks(userId: $userId) {
+      userId
+      id
+      name
+      description
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const getTask = /* GraphQL */ `
+  query GetTask($id: ID!) {
+    getTask(id: $id) {
+      userId
       id
       name
       description
@@ -24,8 +31,14 @@ export const getUser = /* GraphQL */ `
     getUser(id: $id) {
       id
       username
-      name
-      furigana
+      tasks {
+        userId
+        id
+        name
+        description
+        createdAt
+        updatedAt
+      }
     }
   }
 `;
